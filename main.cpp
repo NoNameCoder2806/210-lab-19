@@ -76,6 +76,17 @@ void readMovies(vector<Movie>& movies, string path)
         temp.setTitle(line);        // Set the title of the Movie object
 
         // Add a second loop to read all the comments
-        
+        while (getline(fin, line) && line != "")
+        {
+            // Declare 2 variables to store the comment and rating
+            string comment = line;                  // Store the comment
+            float rating = generateRating();        // Generate a random rating
+
+            // Add the review to the Linked list
+            temp.addReview(rating, comment);
+        }
+
+        // Add the Movie object into the vector
+        movies.push_back(temp);
     }
 }
