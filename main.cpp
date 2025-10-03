@@ -9,9 +9,12 @@ using namespace std;
 // Constants
 const float MIN_RATING = 0.0;
 const float MAX_RATING = 5.0;
+const int RATING_STEPS = 41;                 // Number of possible increments (0.0 … 4.0 in steps of 0.1)
+const double MIN_RATING = 1.0f;              // Minimum rating
+const double RATING_INCREMENT = 0.1f;        // Step size
 
 // Function prototypes
-float generateRating();
+double generateRating();
 
 void displayOptions();                                        // Display all the of operations
 
@@ -145,9 +148,19 @@ int main()
 }
 
 // Function implementations
-float generateRating()
+/*
+    generateRating()
+    Randomly generate a random rating (between 1.0 and 5.0)
+    Arguments: none
+    Return: a double rating between 1.0 and 5.0
+*/
+double generateRating()
 {
-    float rating = (rand() % 41) / 10 + 1.0;
+    // Randomly generate a rating between 1.0 and 5.0
+    double rating = (rand() % RATING_STEPS) * RATING_INCREMENT + MIN_RATING;
+
+    // Return the rating
+    return rating;
 }
 
 /*
