@@ -110,6 +110,9 @@ public:
         // Display all the ratings and comments
         while (current)
         {
+            // Set precision to 1 decimal place
+            cout << fixed << setprecision(1);
+
             // Display all the fields
             cout << setw(INDEX_WIDTH) << left << count + 1;                 // Index column
             cout << setw(RATING_WIDTH) << left << current->rating;          // Rating column
