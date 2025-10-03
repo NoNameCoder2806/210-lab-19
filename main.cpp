@@ -87,17 +87,20 @@ void readMovies(vector<Movie*>& movies, string path)
     string line;
 
     // Iterate through the file and read the titles
-    while (getline(fin, line))
-    {
-        // Skipping empty lines
-        if (line == "")
-        {
-            continue;
-        }
-
+    while (true)
+    {        
         // Declare a new Movie object to store the title and reviews
-        Movie* temp;
-        temp->setTitle(line);        // Set the title of the Movie object
+        Movie* temp = new Movie;
+
+        // Read the title of the movie
+        if (getline(fin, line))
+        {
+            temp->setTitle(line);        // Set the title of the Movie object
+        }
+        else
+        {
+            break;                       // Break out of the loop if we have reached the end of the file
+        }
 
         // Add a second loop to read all the comments
         while (getline(fin, line) && line != "")
@@ -105,9 +108,6 @@ void readMovies(vector<Movie*>& movies, string path)
             // Declare 2 variables to store the comment and rating
             string comment = line;                          // Store the comment
             float rating = (float) generateRating();        // Generate a random rating
-
-            cout << comment << endl;
-            cout << rating << endl;
 
             // Add the review to the Linked list
             temp->addReview(rating, comment);
