@@ -87,7 +87,16 @@ public:
         cout << " --- Title: " << getTitle() << " --- " << endl;
 
         // Declare a new MovieReview node to traverse through the Linked list
-        MovieReview* current = new MovieReview;
+        MovieReview* current = reviews;
+
+        // Check whether the Linked list is empty
+        if (!reviews)
+        {
+            // Display a message
+            cout << " --- There are no reviews in the list! --- " << endl;
+
+            return;        // Exit the function
+        }
 
         // Declare a counter variable to keep track of the number of reviews
         int count = 0;
@@ -104,7 +113,17 @@ public:
         // Display all the ratings and comments
         while (current)
         {
-            cout << " - Review #" << count + 1 << ": "
+            // Display all the fiels
+            cout << setw(INDEX_WIDTH) << left << count + 1;                 // Index column
+            cout << setw(RATING_WIDTH) << left << current->rating;          // Rating column
+            cout << setw(COMMENT_WIDTH) << left << current->comment;        // Comment column
+            cout << endl;
+
+            // Advance to the next node
+            current = current->next;
+
+            // Increment the count
+            count++;
         }
     }
 };

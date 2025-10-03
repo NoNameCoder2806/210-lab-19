@@ -11,6 +11,8 @@ const float MIN_RATING = 0.0;
 const float MAX_RATING = 5.0;
 
 // Function prototypes
+float generateRating();
+
 void displayOptions();                                        // Display all the of operations
 
 void addHead(MovieReview*& head, MovieReview* newNode);       // Add a MovieReview node to the head
@@ -143,6 +145,11 @@ int main()
 }
 
 // Function implementations
+float generateRating()
+{
+    float rating = (rand() % 41) / 10 + 1.0;
+}
+
 /*
     displayOptions()
     Display the operations the user can implement on the Linked list
