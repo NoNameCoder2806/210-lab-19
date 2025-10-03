@@ -50,6 +50,13 @@ int main()
         cout << endl;
     }
 
+    // Iterate through the movies vector
+    for (int i = 0; i < movies.size(); i++)
+    {
+        // Delete all the Movie pointers
+        delete movies.at(i);
+    }
+
     return 0;
 }
 
@@ -84,28 +91,35 @@ void readMovies(vector<Movie*>& movies, string path)
     ifstream fin;
     fin.open(path);
 
+    // Check whether fin was successfully opened
+    if (!fin)
+    {
+        // Display an error message
+        cerr << "Error: Could not open file " << path << endl;
+        
+        return;        // Exit the function
+    }
+
     // Declare a string variable to store the lines' content
     string line;
 
     // Iterate through the file and read the titles
     while (true)
-    {        
+    {
+        if (!getline(fin, line))        // If getline() fails, we have reached the end of file
+        {
+            break;                      // Break out of the loop
+        }
+        if (line == "")                 // If the line is blank
+        {
+            continue;                   // Skip to the next iteration
+        }
+
         // Declare a new Movie pointer to store the title and reviews
         Movie* temp = new Movie;
 
-        // Read the title of the movie
-        if (getline(fin, line) && line != "")      // If the line is not blank
-        {
-            temp->setTitle(line);                  // Set the title of the Movie
-        }
-        else if (line == "")                       // If the line is blank
-        {
-            continue;                              // Skip to the next iteration
-        }
-        else                                       // If getline() fails, we reached the EOF
-        {
-            break;                                 // Break out of the loop
-        }
+        // Store the title of the Movie
+        temp->setTitle(line);
 
         // Add a second loop to read all the comments
         while (getline(fin, line) && line != "")            // If the line is not empty
