@@ -72,20 +72,17 @@ public:
     {
         // Declare a new MovieReview node
         MovieReview* newNode = new MovieReview;
-        newNode->rating = rating;          // Assign the rating
-        newNode->comment = comment;        // Assign the comment
-        newNode->next = nullptr;           // Let next point to a nullptr
+        newNode->rating = (float) rating;      // Assign the rating
+        newNode->comment = comment;            // Assign the comment
+        newNode->next = nullptr;               // Let next point to a nullptr
 
         // Add the new MovieReview node to the head of the Linked list
         newNode->next = reviews;
         reviews = newNode;
     }
 
-    void displayMovie()
+    void displayReviews()
     {
-        // Display the title of the Movie
-        cout << " --- Title: " << getTitle() << " --- " << endl;
-
         // Declare a new MovieReview node to traverse through the Linked list
         MovieReview* current = reviews;
 
@@ -102,7 +99,7 @@ public:
         int count = 0;
 
         // Display a header
-        cout << setw(INDEX_WIDTH) << left << " # ";              // Index column
+        cout << setw(INDEX_WIDTH) << left << "#";                // Index column
         cout << setw(RATING_WIDTH) << left << "Rating";          // Rating column
         cout << setw(COMMENT_WIDTH) << left << "Comment";        // Comment column
         cout << endl;

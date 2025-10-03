@@ -32,6 +32,19 @@ int main()
     // Read all the Movie objects from the data file
     readMovies(movies, path);
 
+    // Iterate through the vector of Movie objects
+    for (int i = 0; i < movies.size(); i++)
+    {
+        // Display the Movie title
+        cout << i + 1 << ". Movie: " << movies.at(i).getTitle() << endl;
+
+        // Display all the reviews of the Movie
+        movies.at(i).displayReviews();
+
+        // Enter a new line
+        cout << endl;
+    }
+
     return 0;
 }
 
@@ -80,7 +93,7 @@ void readMovies(vector<Movie>& movies, string path)
         {
             // Declare 2 variables to store the comment and rating
             string comment = line;                  // Store the comment
-            float rating = generateRating();        // Generate a random rating
+            float rating = (float) generateRating();        // Generate a random rating
 
             // Add the review to the Linked list
             temp.addReview(rating, comment);
