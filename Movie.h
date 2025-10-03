@@ -27,7 +27,7 @@ public:
     Movie()        // Default constructor
     {
         title = "";
-        reviews = new MovieReview;
+        reviews = nullptr;
     }
 
     // Destructor
@@ -91,6 +91,10 @@ public:
 
     void displayReviews()
     {
+        cout << "First node:" << endl;
+        cout << "Rating: " << reviews->rating << endl;
+        cout << "Comment: " << reviews->comment << endl;
+        
         // Declare a new MovieReview node to traverse through the Linked list
         MovieReview* current = reviews;
 
@@ -118,11 +122,18 @@ public:
         // Display all the ratings and comments
         while (current)
         {
-            // Display all the fiels
+            // Display all the fields
             cout << setw(INDEX_WIDTH) << left << count + 1;                 // Index column
             cout << setw(RATING_WIDTH) << left << current->rating;          // Rating column
             cout << setw(COMMENT_WIDTH) << left << current->comment;        // Comment column
             cout << endl;
+
+            // // Check whether the next node is null or not
+            // if (current->next == nullptr)
+            // {
+            //     // Exit the function
+            //     return;
+            // }
 
             // Advance to the next node
             current = current->next;
