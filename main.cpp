@@ -58,7 +58,8 @@ int main()
     generateRating()
     Randomly generate a random rating (between 1.0 and 5.0)
     Arguments: none
-    Return: a double rating between 1.0 and 5.0
+    Return: 
+        - A double rating between 1.0 and 5.0
 */
 double generateRating()
 {
@@ -71,7 +72,7 @@ double generateRating()
 
 /*
     readMovies()
-    Read all the Movie objects and add them into the vector
+    Read all the Movie pointers and add them into the vector
     Arguments:
         - movies: a reference to a Movie pointers vector
         - path: a string that stores the data file path
@@ -89,13 +90,13 @@ void readMovies(vector<Movie*>& movies, string path)
     // Iterate through the file and read the titles
     while (true)
     {        
-        // Declare a new Movie object to store the title and reviews
+        // Declare a new Movie pointer to store the title and reviews
         Movie* temp = new Movie;
 
         // Read the title of the movie
         if (getline(fin, line) && line != "")      // If the line is not blank
         {
-            temp->setTitle(line);                  // Set the title of the Movie object
+            temp->setTitle(line);                  // Set the title of the Movie
         }
         else if (line == "")                       // If the line is blank
         {
@@ -107,7 +108,7 @@ void readMovies(vector<Movie*>& movies, string path)
         }
 
         // Add a second loop to read all the comments
-        while (getline(fin, line) && line != "")
+        while (getline(fin, line) && line != "")            // If the line is not empty
         {
             // Declare 2 variables to store the comment and rating
             string comment = line;                          // Store the comment
@@ -117,7 +118,7 @@ void readMovies(vector<Movie*>& movies, string path)
             temp->addReview(rating, comment);
         }
 
-        // Add the Movie object into the vector
+        // Add the Movie pointer into the vector
         movies.push_back(temp);
     }
 }
