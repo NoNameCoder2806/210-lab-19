@@ -70,36 +70,19 @@ public:
     */
     void addReview(double rating, string comment)
     {
-        cout << "In the function:" << endl;
-        cout << "Comment: " << comment << endl;
-        cout << "rating: " << rating << endl;
-
         // Declare a new MovieReview node
         MovieReview* newNode = new MovieReview;
         newNode->rating = (float) rating;      // Assign the rating
         newNode->comment = comment;            // Assign the comment
         newNode->next = nullptr;               // Let next point to a nullptr
 
-        cout << "After assigning the values: " << endl;
-        cout << "Comment: " << newNode->comment << endl;
-        cout << "rating: " << newNode->rating << endl;
-
         // Add the new MovieReview node to the head of the Linked list
         newNode->next = reviews;
         reviews = newNode;
-
-        
-        cout << "First node: " << endl;
-        cout << "Comment: " << reviews->comment << endl;
-        cout << "rating: " << reviews->rating << endl;
     }
 
     void displayReviews()
     {
-        cout << "First node:" << endl;
-        cout << "Rating: " << reviews->rating << endl;
-        cout << "Comment: " << reviews->comment << endl;
-
         // Declare a new MovieReview node to traverse through the Linked list
         MovieReview* current = reviews;
 
@@ -133,18 +116,14 @@ public:
             cout << setw(COMMENT_WIDTH) << left << current->comment;        // Comment column
             cout << endl;
 
-            // // Check whether the next node is null or not
-            // if (current->next == nullptr)
-            // {
-            //     // Exit the function
-            //     return;
-            // }
-
             // Advance to the next node
             current = current->next;
 
             // Increment the count
             count++;
         }
+
+        // Display a separator
+        cout << string(INDEX_WIDTH + RATING_WIDTH + COMMENT_WIDTH, '-') << endl;
     }
 };

@@ -93,13 +93,17 @@ void readMovies(vector<Movie*>& movies, string path)
         Movie* temp = new Movie;
 
         // Read the title of the movie
-        if (getline(fin, line))
+        if (getline(fin, line) && line != "")      // If the line is not blank
         {
-            temp->setTitle(line);        // Set the title of the Movie object
+            temp->setTitle(line);                  // Set the title of the Movie object
         }
-        else
+        else if (line == "")                       // If the line is blank
         {
-            break;                       // Break out of the loop if we have reached the end of the file
+            continue;                              // Skip to the next iteration
+        }
+        else                                       // If getline() fails, we reached the EOF
+        {
+            break;                                 // Break out of the loop
         }
 
         // Add a second loop to read all the comments
