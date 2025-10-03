@@ -3,18 +3,21 @@
 
 // Libraries and headers
 #include <iostream>
+#include <vector>
 #include "MovieReview.h"
+#include "Movie.h"
 using namespace std;
 
 // Constants
-const float MIN_RATING = 0.0;
-const float MAX_RATING = 5.0;
 const int RATING_STEPS = 41;                 // Number of possible increments (0.0 … 4.0 in steps of 0.1)
 const double MIN_RATING = 1.0f;              // Minimum rating
 const double RATING_INCREMENT = 0.1f;        // Step size
+const string DATA_FILE = "data.txt";         // The path of the data file
 
 // Function prototypes
 double generateRating();
+
+void readMovies(vector<Movie>& movies, string path);
 
 void displayOptions();                                        // Display all the of operations
 
@@ -29,6 +32,15 @@ void displayList(MovieReview* head);                          // Display all the
 // Main function
 int main()
 {
+    // Declare a vector to store all the Movie objects
+    vector<Movie> movies;
+
+    // Declare a string variable to hold the data file path
+    string path = DATA_FILE;
+
+    // Read all the Movie objects from the data file
+    readMovies(movies, path);
+
     // Declare a new Linked list
     MovieReview* head = nullptr;
 
@@ -162,6 +174,8 @@ double generateRating()
     // Return the rating
     return rating;
 }
+
+void readFiles(vector<Movie>& movies, string path);
 
 /*
     displayOptions()
