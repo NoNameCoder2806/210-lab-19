@@ -6,6 +6,7 @@
 // Libraries and headers
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include "MovieReview.h"
 using namespace std;
 
@@ -15,6 +16,11 @@ class Movie
 private:
     string title;                // The movie's title
     MovieReview* reviews;        // The Linked list of the movie's reviews
+
+    // Constants
+    static const int INDEX_WIDTH = 3;
+    static const int RATING_WIDTH = 8;
+    static const int COMMENT_WIDTH = 25;
 
 public:
     // Constructor
@@ -83,10 +89,22 @@ public:
         // Declare a new MovieReview node to traverse through the Linked list
         MovieReview* current = new MovieReview;
 
+        // Declare a counter variable to keep track of the number of reviews
+        int count = 0;
+
+        // Display a header
+        cout << setw(INDEX_WIDTH) << left << " # ";              // Index column
+        cout << setw(RATING_WIDTH) << left << "Rating";          // Rating column
+        cout << setw(COMMENT_WIDTH) << left << "Comment";        // Comment column
+        cout << endl;
+
+        // Display a separator
+        cout << string(INDEX_WIDTH + RATING_WIDTH + COMMENT_WIDTH, '-') << endl;
+
         // Display all the ratings and comments
         while (current)
         {
-
+            cout << " - Review #" << count + 1 << ": "
         }
     }
 };
