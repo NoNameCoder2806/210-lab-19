@@ -20,7 +20,7 @@ const string DATA_FILE = "data.txt";         // The path of the data file
 // Function prototypes
 double generateRating();
 
-void readMovies(vector<Movie>& movies, string path);
+void readMovies(vector<Movie*>& movies, string path);
 
 // Main function
 int main()
@@ -28,8 +28,8 @@ int main()
     // Call srand() and time()
     srand(time(0));
 
-    // Declare a vector to store all the Movie objects
-    vector<Movie> movies;
+    // Declare a vector to store all the Movie pointers
+    vector<Movie*> movies;
 
     // Declare a string variable to hold the data file path
     string path = DATA_FILE;
@@ -41,10 +41,10 @@ int main()
     for (int i = 0; i < movies.size(); i++)
     {
         // Display the Movie title
-        cout << i + 1 << ". Movie: " << movies.at(i).getTitle() << endl;
+        cout << i + 1 << ". Movie: " << movies.at(i)->getTitle() << endl;
 
         // Display all the reviews of the Movie
-        movies.at(i).displayReviews();
+        movies.at(i)->displayReviews();
 
         // Enter a new line
         cout << endl;
@@ -73,11 +73,11 @@ double generateRating()
     readMovies()
     Read all the Movie objects and add them into the vector
     Arguments:
-        - movies: a reference to a Movie vector
+        - movies: a reference to a Movie pointers vector
         - path: a string that stores the data file path
     Return: none
 */
-void readMovies(vector<Movie>& movies, string path)
+void readMovies(vector<Movie*>& movies, string path)
 {
     // Declare a file stream to read the file
     ifstream fin;
@@ -89,9 +89,15 @@ void readMovies(vector<Movie>& movies, string path)
     // Iterate through the file and read the titles
     while (getline(fin, line))
     {
+        // Skipping empty lines
+        if (line == "")
+        {
+            continue;
+        }
+
         // Declare a new Movie object to store the title and reviews
-        Movie temp;
-        temp.setTitle(line);        // Set the title of the Movie object
+        Movie* temp;
+        temp->setTitle(line);        // Set the title of the Movie object
 
         // Add a second loop to read all the comments
         while (getline(fin, line) && line != "")
@@ -104,7 +110,7 @@ void readMovies(vector<Movie>& movies, string path)
             cout << rating << endl;
 
             // Add the review to the Linked list
-            temp.addReview(rating, comment);
+            temp->addReview(rating, comment);
         }
 
         // Add the Movie object into the vector

@@ -87,6 +87,11 @@ public:
         // Add the new MovieReview node to the head of the Linked list
         newNode->next = reviews;
         reviews = newNode;
+
+        
+        cout << "First node: " << endl;
+        cout << "Comment: " << reviews->comment << endl;
+        cout << "rating: " << reviews->rating << endl;
     }
 
     void displayReviews()
@@ -94,7 +99,7 @@ public:
         cout << "First node:" << endl;
         cout << "Rating: " << reviews->rating << endl;
         cout << "Comment: " << reviews->comment << endl;
-        
+
         // Declare a new MovieReview node to traverse through the Linked list
         MovieReview* current = reviews;
 
