@@ -27,7 +27,7 @@ public:
     Movie()        // Default constructor
     {
         title = "";
-        reviews = nullptr;
+        reviews = new MovieReview;
     }
 
     // Destructor
@@ -70,11 +70,19 @@ public:
     */
     void addReview(double rating, string comment)
     {
+        cout << "In the function:" << endl;
+        cout << "Comment: " << comment << endl;
+        cout << "rating: " << rating << endl;
+
         // Declare a new MovieReview node
         MovieReview* newNode = new MovieReview;
         newNode->rating = (float) rating;      // Assign the rating
         newNode->comment = comment;            // Assign the comment
         newNode->next = nullptr;               // Let next point to a nullptr
+
+        cout << "After assigning the values: " << endl;
+        cout << "Comment: " << newNode->comment << endl;
+        cout << "rating: " << newNode->rating << endl;
 
         // Add the new MovieReview node to the head of the Linked list
         newNode->next = reviews;

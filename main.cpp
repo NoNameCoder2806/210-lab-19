@@ -5,6 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 #include "MovieReview.h"
 #include "Movie.h"
 using namespace std;
@@ -23,6 +25,9 @@ void readMovies(vector<Movie>& movies, string path);
 // Main function
 int main()
 {
+    // Call srand() and time()
+    srand(time(0));
+
     // Declare a vector to store all the Movie objects
     vector<Movie> movies;
 
@@ -92,8 +97,11 @@ void readMovies(vector<Movie>& movies, string path)
         while (getline(fin, line) && line != "")
         {
             // Declare 2 variables to store the comment and rating
-            string comment = line;                  // Store the comment
+            string comment = line;                          // Store the comment
             float rating = (float) generateRating();        // Generate a random rating
+
+            cout << comment << endl;
+            cout << rating << endl;
 
             // Add the review to the Linked list
             temp.addReview(rating, comment);
